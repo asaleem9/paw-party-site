@@ -1,0 +1,47 @@
+{
+  "name": "paw-party-site",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome check",
+    "format": "biome format --write",
+    "sync:assets": "node scripts/sync-assets.mjs",
+    "build:demo": "wasm-pack build demo --target web --release --out-dir ../public/demo --out-name demo --no-typescript && rm -f public/demo/.gitignore public/demo/package.json public/demo/README.md",
+    "test:demo": "cargo test --manifest-path demo/Cargo.toml",
+    "render": "node scripts/render-videos.mjs",
+    "studio": "remotion studio remotion/index.ts",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@remotion/google-fonts": "^4.0.543",
+    "@remotion/media": "^4.0.543",
+    "@remotion/player": "^4.0.543",
+    "gsap": "^3.15.1",
+    "next": "16.4.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "remotion": "^4.0.543"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.4.2",
+    "@playwright/test": "^1.65.0",
+    "@remotion/bundler": "^4.0.543",
+    "@remotion/cli": "^4.0.543",
+    "@remotion/renderer": "^4.0.543",
+    "@tailwindcss/turbopack": "4.3.3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "sharp": "^0.35.5",
+    "tailwindcss": "4.3.3",
+    "typescript": "^5",
+    "wasm-pack": "^0.15.1"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true
+  }
+}

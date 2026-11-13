@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+@theme {
+  --color-teal: #00f4d1;
+  --color-lagoon: #00cdb7;
+  --color-deep: #00756a;
+  --color-ink: #0b0d10;
+  --color-sun: #fff303;
+  --color-cream: #fbfaf4;
+
+  --font-display: var(--font-bricolage), ui-rounded, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-ink);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+.on-dark :focus-visible {
+  outline-color: var(--color-sun);
+}
+
+/* The hero's entrance runs in CSS so it starts with the first paint, before any script loads. */
+@media (prefers-reduced-motion: no-preference) {
+  .enter {
+    animation: enter 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation-delay: var(--delay, 0s);
+  }
+  .enter-reel {
+    animation: enter-reel 1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+  }
+  .enter-cat {
+    animation: enter-cat 0.9s cubic-bezier(0.34, 1.5, 0.64, 1) 0.6s both;
+  }
+}
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    translate: 0 44px;
+  }
+}
+
+/* No fade here: the reel holds the page's largest image, which should paint at once. */
+@keyframes enter-reel {
+  from {
+    scale: 0.9;
+    rotate: 4deg;
+  }
+}
+
+@keyframes enter-cat {
+  from {
+    translate: 0 105%;
+  }
+}
+
+/* Horizontal game shelf on small screens: swipe with snap, no scrollbar. */
+.shelf {
+  scrollbar-width: none;
+}
+.shelf::-webkit-scrollbar {
+  display: none;
+}
