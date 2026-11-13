@@ -16,6 +16,10 @@ export default function Privacy() {
           {copy.privacy.draftNote}
         </p>
       )}
+      <p className="text-base font-semibold text-ink/60" data-testid="effective-date">
+        {copy.privacy.effective}
+      </p>
+      <p className="mb-10 mt-3">{copy.privacy.intro}</p>
       {copy.privacy.sections.map((section) => (
         <section key={section.heading} className="mb-10">
           <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink">{section.heading}</h2>
@@ -26,6 +30,19 @@ export default function Privacy() {
           ))}
         </section>
       ))}
+      {config.supportEmail ? (
+        <section className="mb-10">
+          <h2 className="font-display text-2xl font-extrabold tracking-tight text-ink">
+            {copy.privacy.contactHeading}
+          </h2>
+          <p className="mt-3">
+            {copy.privacy.contactBody}{" "}
+            <a href={`mailto:${config.supportEmail}`} className="font-semibold text-ink underline underline-offset-4">
+              {config.supportEmail}
+            </a>
+          </p>
+        </section>
+      ) : null}
     </TextPage>
   );
 }

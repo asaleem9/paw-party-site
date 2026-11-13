@@ -225,47 +225,69 @@ export const copy = {
     links: [
       { label: "Privacy", href: "/privacy" },
       { label: "Support", href: "/support" },
+      { label: "Contact", href: "/contact" },
     ],
     appleNote: "Apple, iPad and App Store are trademarks of Apple Inc.",
   },
 
   privacy: {
     title: "Privacy",
+    effective: "Effective 13 November 2026",
+    intro:
+      "This covers the Paw Party app for iPad and this website. The short version: the app keeps everything on your iPad and sends nothing to me or anyone else.",
     draftNote: "This page is a draft and hasn't been through a final review yet.",
     sections: [
       {
-        heading: "What the app stores",
+        heading: "What the app collects",
         body: [
-          "Paw Party keeps your cats' names, levels, play history, trophies and settings on your iPad.",
-          "If you turn on Pounce Cam, the photos it takes are saved inside the app on your iPad. A photo goes to your photo library only when you tap Save.",
+          "Nothing. Paw Party has no analytics, no advertising code and no server. It doesn't send any information off your iPad.",
         ],
       },
       {
-        heading: "The camera",
+        heading: "What stays on your iPad",
         body: [
-          "The app asks for camera access only when you turn on Pounce Cam. While Pounce Cam is on, the front camera is active during play. Turn it off in the app's settings at any time.",
+          "The app saves your cats' names, levels, play history, trophies and settings on the iPad so they're there next time. Deleting the app deletes all of it.",
+          "If you turn on Pounce Cam, the photos it takes are saved inside the app on your iPad. A photo is copied to your photo library only when you tap Save, and is shared only when you choose to share it.",
+        ],
+      },
+      {
+        heading: "Camera and photos",
+        body: [
+          "The app asks for camera access only if you turn on Pounce Cam. While it's on, the front camera is active during play so it can take a picture when your cat catches something. Turn Pounce Cam off in the app's settings, or remove camera access in the iPad's Settings app, at any time.",
+          "The app asks for permission to add to your photo library the first time you save a photo or a paw painting. It can't read the photos already in your library.",
         ],
       },
       {
         heading: "Accounts, ads and purchases",
-        body: ["The app has no accounts or sign-in. It shows no ads and has no in-app purchases."],
+        body: ["There are no accounts and nothing to sign in to. The app shows no ads and has no in-app purchases."],
+      },
+      {
+        heading: "Children",
+        body: [
+          "Paw Party is made for cats and the people who live with them. It doesn't collect information from anyone, children included.",
+        ],
       },
       {
         heading: "This website",
         body: [
-          "This site doesn't use cookies or analytics scripts. Like any website, the company that hosts it keeps standard server logs.",
+          "This site doesn't use cookies or analytics scripts. Like any website, the company that hosts it keeps standard server logs, such as the address a request came from and the page it asked for.",
+          "If you email me, I'll have your email address and whatever you wrote. I use it to reply and for nothing else.",
         ],
       },
       {
         heading: "Changes",
-        body: ["If any of this changes, this page will be updated before the change ships."],
+        body: [
+          "If any of this changes, this page will be updated, with a new date at the top, before the change ships.",
+        ],
       },
     ],
+    contactHeading: "Contact",
+    contactBody: "Questions about any of this:",
   },
 
   support: {
     title: "Support",
-    body: "Most questions are answered below. If yours isn't, get in touch.",
+    body: "Most questions are answered below. If yours isn't, or something in the app isn't working, write to me and I'll reply.",
     contactPrefix: "Email",
     noContact: "A contact address will be listed here when the app launches.",
     tipsTitle: "Getting set up",

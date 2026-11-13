@@ -1,4 +1,5 @@
 import { expect, type Page, test } from "@playwright/test";
+import { config } from "../content/config";
 import { copy } from "../content/copy";
 
 /** Collects anything the page logs as an error, so tests can assert there was none. */
@@ -144,21 +145,34 @@ test("nothing spills sideways on a phone", async ({ page }) => {
   expect(overflow).toBeLessThanOrEqual(1);
 });
 
-test("the privacy page is marked as a draft and kept out of search", async ({ page }) => {
+test("the privacy page is final, dated, and says how to get in touch", async ({ page }) => {
   await page.goto("/privacy");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(copy.privacy.title);
-  await expect(page.getByTestId("draft-note")).toBeVisible();
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  await expect(page.getByTestId("draft-note")).toHaveCount(0);
+  await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0);
+  await expect(page.getByTestId("effective-date")).toHaveText(copy.privacy.effective);
   for (const section of copy.privacy.sections) {
-    await expect(page.getByRole("heading", { name: section.heading })).toBeVisible();
+    await expect(page.getByRole("heading", { name: section.heading, exact: true })).toBeVisible();
   }
+  await expect(page.getByRole("link", { name: config.supportEmail })).toHaveAttribute(
+    "href",
+    `mailto:${config.supportEmail}`,
+  );
 });
 
-test("the support page works without a contact address", async ({ page }) => {
+test("the support page gives a working contact address", async ({ page }) => {
   await page.goto("/support");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(copy.support.title);
-  await expect(page.getByTestId("support-contact")).toHaveText(copy.support.noContact);
-  await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0);
+  const contact = page.getByTestId("support-contact").getByRole("link");
+  await expect(contact).toHaveText(config.supportEmail);
+  await expect(contact).toHaveAttribute("href", `mailto:${config.supportEmail}`);
+  expect(config.supportEmail).toMatch(/^[^@\s]+@pawparty\.life$/);
+});
+
+test("/contact leads to the support page", async ({ page }) => {
+  await page.goto("/contact");
+  await expect(page).toHaveURL(/\/support$/);
+  await expect(page.getByTestId("support-contact")).toBeVisible();
 });
 
 test("footer links, sitemap and robots are in place", async ({ page, request }) => {

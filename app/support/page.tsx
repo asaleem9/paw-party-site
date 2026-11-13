@@ -9,7 +9,7 @@ export default function Support() {
   return (
     <TextPage title={copy.support.title}>
       <p>{copy.support.body}</p>
-      <p className="mt-3 font-semibold text-ink" data-testid="support-contact">
+      <p id="contact" className="mt-3 font-semibold text-ink" data-testid="support-contact">
         {config.supportEmail ? (
           <>
             {copy.support.contactPrefix}{" "}
